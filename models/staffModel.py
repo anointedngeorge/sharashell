@@ -35,12 +35,3 @@ class Staff(models.Model):
     def __str__(self):
         return self.fullName
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
-        if self.img:
-            pic = Image.open(self.img.path)
-            if pic.height > 229 or pic.width > 229:
-                new_pic = (229, 229)
-                pic.thumbnail(new_pic)
-                pic.save(self.img.path)

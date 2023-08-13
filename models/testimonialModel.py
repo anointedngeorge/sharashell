@@ -15,15 +15,6 @@ class Testimonial(models.Model):
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
-        if self.img:
-            pic = Image.open(self.img.path)
-            if pic.height > 100 or pic.width > 100:
-                new_pic = (100, 100)
-                pic.thumbnail(new_pic)
-                pic.save(self.img.path)
 
     class Meta:
         app_label = 'new_hightech'

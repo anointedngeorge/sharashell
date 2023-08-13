@@ -17,22 +17,6 @@ class Slider(models.Model):
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
-        if self.img:
-            pic = Image.open(self.img.path)
-            if pic.height > 700 or pic.width > 1349:
-                new_pic = (1349, 700)
-                pic.thumbnail(new_pic)
-                pic.save(self.img.path)
-
-        if self.img2:
-            pic1 = Image.open(self.img2.path)
-            if pic1.height > 700 or pic1.width > 1349:
-                new_pic = (1349, 700)
-                pic1.thumbnail(new_pic)
-                pic1.save(self.img2.path)
 
     class Meta:
         app_label = 'new_hightech'

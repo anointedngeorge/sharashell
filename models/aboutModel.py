@@ -13,22 +13,6 @@ class About(models.Model):
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
-        if self.img:
-            pic = Image.open(self.img.path)
-            if pic.height > 450 or pic.width > 500:
-                new_pic = (500, 450)
-                pic.thumbnail(new_pic)
-                pic.save(self.img.path)
-        
-        if self.img2:
-            pic1 = Image.open(self.img2.path)
-            if pic1.height > 450 or pic1.width > 500:
-                new_pic = (500, 450)
-                pic1.thumbnail(new_pic)
-                pic1.save(self.img2.path)
 
     class Meta:
         app_label = 'new_hightech'

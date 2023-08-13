@@ -65,7 +65,7 @@
                   {% filter linebreaks %}
                   <p class="mb-4">{{ service.content | linebreaks }}</p>
                   {%endfilter%}
-                  <a href="/service" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a>
+                  <a href="{{ service.slug }}" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a>
                 </div>
               </div>
             </div>

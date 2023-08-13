@@ -11,5 +11,7 @@ urlpatterns = [
     path('<str:pagename>', index, name='index'),
     path('feedback/', contactView, name='feedback'),
     path('students-register/', studentsView, name='registration'),
+    path('service-detail/<slug:slug>', serviceView, name='service-detail'),
+    path('project-detail/<slug:slug>', projectView, name='project-detail'),
 ]
  

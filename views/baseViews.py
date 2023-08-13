@@ -21,6 +21,28 @@ def index(request, pagename=None):
     return render(request, 'index.html', context=context)
 
 
+def projectView(request, slug):
+    projector = Project.objects.filter(slug=slug)
+    template = loader.get_template('project-detail.html')
+
+    context = {
+        'projector' : projector
+    }
+
+    return HttpResponse(template.render(context, request))
+
+
+def serviceView(request, slug):
+    services = Service.objects.filter(slug=slug)
+    template = loader.get_template('service-detail.html')
+
+    context = {
+        'services' : services
+    }
+    return HttpResponse(template.render(context, request))
+
+
+
 def contactView(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -36,24 +58,6 @@ def contactView(request):
                                   project=project, message=message)
             submission.save()
             return render(request, 'index.html')
-
-    #         # Send the email
-    #         subject = f"Contact Form Submission - {name}"
-    #         message_body = f"Name: {name}\nEmail: {email}\nProject: {project}\nMessage: {message}"
-    #         sender_email = f"{email}"
-    #         recipient_list = ["sharashell@gmail.com"]
-
-    #         try:
-    #             send_mail(subject, message_body, sender_email,
-    #                       recipient_list, fail_silently=False)
-    #             # Display success message
-    #             messages.success(
-    #                 request, "Your message has been sent successfully!")
-    #         except Exception as e:
-    #             # Display error message
-    #             messages.error(
-    #                 request, "An error occurred while sending the email. Please try again later.")
-    #             print(f"An error occurred while sending the email: {str(e)}")
 
     else:
         form = ContactForm()

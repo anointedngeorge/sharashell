@@ -23,22 +23,7 @@ class Blog(models.Model):
     def get_comment_count(self):
         return self.comment_set.count()
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
 
-        if self.img:
-            pic = Image.open(self.img.path)
-            if pic.height > 450 or pic.width > 600:
-                new_pic = (600, 450)
-                pic.thumbnail(new_pic)
-                pic.save(self.img.path)
-
-        if self.authorImg:
-            pic1 = Image.open(self.authorImg.path)
-            if pic1.height > 100 or pic1.width > 100:
-                new_pic = (100, 100)
-                pic1.thumbnail(new_pic)
-                pic1.save(self.authorImg.path)
 
     class Meta:
         app_label = 'new_hightech'

@@ -18,6 +18,16 @@ from webapps.new_hightech.models.studentModel import *
 # Register your models here.
 
 
+class ProjectAdmin(admin.ModelAdmin):
+    list_display = ('name', 'img', 'projectName', 'context')
+    prepopulated_fields = {'slug': ('projectName',)}
+
+
+class ServiceAdmin(admin.ModelAdmin):
+    list_display = ('name', 'icon', 'content')
+    prepopulated_fields = {'slug': ('name',)}
+
+
 admin.site.register(Fact)
 admin.site.register(FAQs)
 admin.site.register(Blog)
@@ -28,8 +38,6 @@ admin.site.register(Slider)
 admin.site.register(Footer)
 admin.site.register(Contact)
 admin.site.register(Courses)
-admin.site.register(Service)
-admin.site.register(Project)
 admin.site.register(Privacy)
 admin.site.register(FeedBack)
 admin.site.register(Position)
@@ -37,4 +45,6 @@ admin.site.register(TitleModel)
 admin.site.register(Testimonial)
 admin.site.register(Advertisement)
 admin.site.register(TermsAndCondition)
+admin.site.register(Service, ServiceAdmin)
+admin.site.register(Project, ProjectAdmin)
 admin.site.register(StudentsRegisterModel)
