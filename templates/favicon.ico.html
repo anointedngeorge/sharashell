@@ -1,0 +1,71 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="col-md-6">
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <input type="text" id="firstName" name="firstName" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" name="lastName" class="form-control" required>
+  </div>
+  
+  <div class="form-group">
+    <label for="gender">Gender</label>
+    <select id="gender" name="gender" class="form-control" required>
+      <option value="M">Male</option>
+      <option value="F">Female</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="image">Profile Picture</label>
+    <input type="file" id="image" name="image" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="studentType">Type of Student</label>
+    <select name="studentType" id="studentType" class="form-control" required>
+      <option disabled="disabled" selected="selected">Choose option</option>
+      <option value="IT">IT student</option>
+      <option value="nonIT">Non IT student</option>
+    </select>
+  </div>
+</div>
+<div class="col-md-6">
+  <div class="form-group">
+    <label for="phone">Phone Number</label>
+    <input type="number" id="phone" name="phone" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="occupation">Occupation</label>
+    <input type="text" id="occupation" name="occupation" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="address">Address</label>
+    <textarea id="address" name="address" class="form-control" rows="4" required></textarea>
+  </div>
+  <div class="form-group">
+    <label for="courseOfStudy">Courses of Study</label>
+    <select name="courseOfStudy" class="form-control">
+      <option disabled="disabled" selected="selected">Choose option</option>
+      {% for course in studentsForm.course.field.queryset %}
+      <option value="{{ course.pk }}">{{ course.courseChoices }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>

@@ -1,0 +1,307 @@
+{% extends 'base.html' %} {% block content %}
+
+<!-- Carousel Start -->
+{% for title in titles %}
+<div class="container-fluid px-0">
+  <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-bs-target="#carouselId" data-bs-slide-to="0" class="active" aria-current="true" aria-label="First slide">
+      </li>
+      <li data-bs-target="#carouselId" data-bs-slide-to="1" aria-label="Second slide"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      <div class="carousel-item active">
+        {% for slide in sliders %}
+        <img src="{{ slide.img.url }}" class="img-fluid landscape-image" alt="First slide">
+        {% endfor %}
+        <div class="carousel-caption">
+          <div class="container carousel-content">
+            <h6 class="text-secondary h4 animated fadeInUp">
+              {{ title.firstSlideSubTitle }}
+            </h6>
+            <h1 class="text-white display-1 mb-4 animated fadeInRight">
+              {{ title.firstSlideTitle }}
+            </h1>
+            {% for slide in sliders %}
+            <p class="mb-4 text-white fs-5 animated fadeInDown">
+              {{ slide.description }}
+            </p>
+            <a href="/about" class="me-2"><button type="button"
+                class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn1 animated fadeInLeft">
+                Read More
+              </button></a>
+            <a href="/contact" class="ms-2"><button type="button"
+                class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn2 animated fadeInRight">
+                Contact Us
+              </button></a>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="{{ slide.img2.url }}" class="img-fluid landscape-image" alt="Second slide" />
+        {% endfor %}
+
+        <div class="carousel-caption">
+          <div class="container carousel-content">
+            <h6 class="text-secondary h4 animated fadeInUp">{{ title.secondSlideSubTitle }}</h6>
+            <h1 class="text-white display-1 mb-4 animated fadeInLeft">{{ title.secondSlideTitle }}</h1>
+            {% for slide in sliders %}
+            <p class="mb-4 text-white fs-5 animated fadeInDown">{{ slide.description2 }}</p>
+            <a href="/about" class="me-2"><button type="button"
+                class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn1 animated fadeInLeft">Read
+                More</button></a>
+            <a href="/contact" class="ms-2"><button type="button"
+                class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn2 animated fadeInRight">Contact
+                Us</button></a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+<!-- Carousel End -->
+
+<!-- Fact Start -->
+<div class="container-fluid py-5" style="background-color: #d4a86a">
+  <div class="container">
+    <div class="row">
+      {% for fact in facts %}
+      <div class="col-lg-3 wow fadeIn" data-wow-delay=".3s">
+        <div class="d-flex counter">
+          <h1 class="me-3 text-dark counter-value">{{ fact.numb }}</h1>
+          <h5 class="text-white mt-1">{{ fact.content }}</h5>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- Fact End -->
+
+<!-- About Start -->
+<div id="about" class="container-fluid project py-5 my-5">
+  <div class="container pt-5">
+    <div class="row g-5">
+      <div class="project-item col-lg-5 col-md-6 col-sm-12 wow fadeIn" data-wow-delay=".3s">
+        {% for about in abouts %}
+        <div class="project-img h-100 position-relative">
+          <img src="{{ about.img.url }}" class="about-img img-fluid w-75 rounded" alt="about-img"
+            style="margin-bottom: 25%" />
+          <div class="position-absolute w-75" style="top: 28%; left: 25%">
+            <img src="{{ about.img2.url }}" class="about-img img-fluid w-100 rounded" alt="about-img" />
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="col-lg-7 col-md-6 col-sm-12 wow fadeIn" data-wow-delay=".5s">
+        <h5 class="text-primary">{{ title.aboutSubTitle }}</h5>
+        <h1 class="mb-4">{{ title.aboutTitle }}</h1>
+        {% for about in abouts %}
+        {% filter linebreaks %}
+        <p class="mb-4">{{ about.content | linebreaks }}</p>
+        {%endfilter%}
+        <a href="/about" class="btn  rounded-pill px-5 py-3 text-dark">More Details</a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- About End -->
+
+<!-- Services Start -->
+<div id="service" class="container-fluid services py-5 mb-5">
+  <div class="container">
+    <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px">
+      <h5 class="text-primary">{{ title.serviceSubTitle }}</h5>
+      <h1>{{ title.serviceTitle }}</h1>
+    </div>
+    <div class="row g-5 services-inner">
+      {% for service in services %}
+      <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".3s">
+        <div class="services-item bg-light">
+          <div class="p-4 text-center services-content">
+            <div class="services-content-icon">
+              <i class="fas {{ service.icon }} fa-7x mb-4 text-dark"></i>
+              <h4 class="mb-3">{{ service.name }}</h4>
+              {% filter linebreaks %}
+              <p class="mb-4">{{ service.content | linebreaks }}</p>
+              {%endfilter%}
+              <a href="/service" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- Services End -->
+
+<!-- Blog Start -->
+<div id="blog" class="container-fluid blog py-5 mb-5">
+  <div class="container">
+    <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px">
+      <h5 class="text-primary">{{ title.blogSubTitle }}</h5>
+      <h1>{{ title.blogTitle }}</h1>
+    </div>
+    <div class="row g-5 justify-content-center">
+      {% for blog in blogs %}
+      <div class="col-lg-6 col-xl-4 wow fadeIn" data-wow-delay=".3s">
+        <div class="blog-item position-relative bg-light rounded">
+          <img src="{{ blog.img.url }}" class="img-fluid w-100 rounded-top blog-img" alt="{{ blog.blogName }}" />
+          <span class="position-absolute px-4 py-3 bg-secondary text-white rounded" style="top: -28px; right: 20px">
+           {{ blog.blogName }}</span>
+          <div class="blog-btn d-flex justify-content-between position-relative px-3" style="margin-top: -75px">
+            <div class="blog-icon btn btn-secondary px-3 rounded-pill my-auto">
+              <a href="/blog" class="btn text-white">Read More</a>
+            </div>
+            <div class="blog-btn-icon btn btn-secondary px-4 py-3 rounded-pill">
+              <div class="blog-icon-1">
+                <p class="text-white px-2">
+                  Share<i class="fa fa-arrow-right ms-3"></i>
+                </p>
+              </div>
+              <div class="blog-icon-2">
+                <a href="https://www.facebook.com/" target="_blank" class="btn me-1"><i class="fab fa-facebook-f text-white"></i></a>
+                <a href="https://www.twitter.com/" target="_blank" class="btn me-1"><i class="fab fa-twitter text-white"></i></a>
+                <a href="https://www.instagram.com/" target="_blank" class="btn me-1"><i class="fab fa-instagram text-white"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="blog-content text-center position-relative px-3" style="margin-top: -25px">
+            <img src="{{ blog.authorImg.url }}"
+              class="testimonial-img img-fluid rounded-circle border border-4 border-white mb-3" alt="image" />
+            <h5 class="">By {{ blog.author }}</h5>
+            <span class="text-secondary">{{ blog.date }}</span>
+            {% filter linebreaks %}
+            <p class="py-0">{{ blog.blogContent | linebreaks }}</p>
+            {%endfilter%}
+          </div>
+          <div class="blog-coment d-flex justify-content-between px-4 py-2 border bg-dark rounded-bottom">
+            <a href="/" class="text-white"><small><i class="fas fa-share me-2 text-secondary"></i>{{ blog.get_share_count }}
+                Share</small></a>
+            <a href="/" class="text-white"><small><i class="fa fa-comments me-2 text-secondary"></i>{{ blog.get_comment_count }}
+                Comments</small></a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- Blog End -->
+
+<!-- Team Start -->
+<div id="team" class="container-fluid py-5 mb-5 team">
+  <div class="container">
+    <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px">
+      <h5 class="text-primary">{{ title.staffSubTitle }}</h5>
+      <h1>{{ title.staffTitle }}</h1>
+    </div>
+    <div class="owl-carousel team-carousel wow fadeIn" data-wow-delay=".5s">
+
+      {% if personel %}
+      {% for staff in personel %}
+      {% if staff.is_active %}
+      <div class="rounded team-item">
+        <div class="team-content">
+          <div class="team-img-icon">
+            <div class="team-img bg-dark rounded-circle">
+              <img src="{{ staff.img.url }}" class="staff-img img-fluid w-100 rounded-circle" alt="Personel Image" />
+            </div>
+            <div class="team-name text-center py-3">
+              <h4 class="fullname" style="text-transform: uppercase;">{{ staff.fullName }}</h4>
+              <p class="m-0" style="text-transform: uppercase;">{{ staff.position.value }}</p>
+            </div>
+
+            <div class="team-icon d-flex justify-content-center pb-4">
+              {% if staff.facebook_handle %}
+              <a class="btn btn-square btn-secondary text-white rounded-circle m-1"
+                href="{{ staff.facebook_handle }}"><i class="fab fa-facebook-f"></i></a>
+              {% endif %} {% if staff.twitter_handle %}
+              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="{{ staff.twitter_handle }}"><i
+                  class="fab fa-twitter"></i></a>
+              {% endif %} {% if staff.instagram_handle %}
+              <a class="btn btn-square btn-secondary text-white rounded-circle m-1"
+                href="{{ staff.instagram_handle }}"><i class="fab fa-instagram"></i></a>
+              {% endif %} {% if staff.linkedin_handle %}
+              <a class="btn btn-square btn-secondary text-white rounded-circle m-1"
+                href="{{ staff.linkedin_handle }}"><i class="fab fa-linkedin-in"></i></a>
+              {% endif %} {% if staff.github_handle %}
+              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="{{ staff.github_handle }}"><i
+                  class="fab fa-github"></i></a>
+              {% endif %}
+            </div>
+          </div>
+
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- Team End -->
+
+<!-- Testimonial Start -->
+<div id="testimonial" class="container-fluid testimonial py-5 mb-5">
+  <div class="container">
+    <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px">
+      <h5 class="text-primary">{{ title.testimonySubTitle }}</h5>
+      <h1>{{ title.testimonyTitle }}</h1>
+    </div>
+    <div class="owl-carousel testimonial-carousel wow fadeIn" data-wow-delay=".5s">
+      {% for testimony in testimonial %}
+      <div class="testimonial-item border p-4">
+        <div class="d-flex align-items-center">
+          <div>
+            <img class="testimonial-img" src="{{ testimony.img.url }}" alt="" />
+          </div>
+          <div class="ms-4">
+            <h4 class="text-secondary">{{ testimony.clientName }}</h4>
+            <p class="m-0 pb-3">{{ testimony.clientProfession }}</p>
+            <div class="d-flex pe-5">
+              {% for star in "x"|rjust:testimony.rating %}
+              <i class="fas fa-star me-1 rating"></i>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="border-top mt-4 pt-3">
+          {% filter linebreaks %}
+          <p class="mb-0">{{ testimony.feedBack | linebreaks }}</p>
+          {%endfilter%}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- Testimonial End -->
+
+<!-- Advertisement -->
+<section class="container-fluid " >
+  <div class="container col-lg-12 wow fadeIn " data-wow-delay=".3s">
+    {% for advert in adverts %}
+    <div class=" h-100 w-100">
+      <iframe  width="100%" height="315" src="{{ advert.adLink }}?autoplay=1" style="border: 0" allowfullscreen=""
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+<!-- Advertisement End -->
+
+{% endfor %}
+{% endblock content %}
